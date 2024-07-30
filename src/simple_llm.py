@@ -5,9 +5,10 @@ from apis import OPENAI_API_KEY
 from langchain.llms.openai import OpenAI
 
 llm=OpenAI(
-    openai_api_key=OPENAI_API_KEY,
-    temperature=0.9, 
-    max_tokens=512
+  model_name="gpt-3.5-turbo-instruct",
+  openai_api_key=OPENAI_API_KEY,
+  temperature=0.9, 
+  max_tokens=512
   )
 print("\nllm:",llm)
 
