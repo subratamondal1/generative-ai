@@ -1,9 +1,8 @@
-# Generative AI
-```
-Generative AI - RAG from Scratch
-```
+<h1><center>Generative AI- RAG from Scratch</center></h1>
 
-## Chat Models `GPT-4o Results`
+
+# Chat Models `GPT-4o Results`
+[**chat_models.py**](/src/chat_models.py)
 ```
 messages:list[Any]=[
           SystemMessage(
@@ -67,3 +66,5 @@ Let's simplify the explanation further:
 If there are any parts that are unclear or if you have specific questions, we can dive deeper into those areas. For example, if you want to know more about how to fine-tune a generation model or how to set up an indexing system, we can explore those topics in detail.
 
 Feel free to ask for further clarification on any step!
+
+
