@@ -184,3 +184,58 @@ print(output)
 ```
 1668.83
 ```
+
+# Agents
+
+```
+from langchain_experimental.agents.agent_toolkits import create_python_agent
+from langchain_experimental.tools import PythonREPLTool
+from langchain_openai import ChatOpenAI
+
+from apis import OPENAI_API_KEY
+
+llm=ChatOpenAI(
+    model="gpt-4o",
+    api_key=OPENAI_API_KEY,
+    temperature=0.9,
+    max_tokens=1024
+)
+agent_executor=create_python_agent(
+    llm=llm,
+    tool=PythonREPLTool(),
+    verbose=True
+)
+
+agent_executor.invoke(input="Calculate the square root of the factorial of 20 and display it with 4 decimal places.")
+```
+
+```
+> Entering new AgentExecutor chain...
+First, I'll need to compute the factorial of 20. Then, I'll find the square root of that result. Finally, I'll format the output to display it with 4 decimal places.
+
+Action: Python_REPL
+Action Input: 
+```python
+import math
+
+# Calculate the factorial of 20
+factorial_20 = math.factorial(20)
+
+# Calculate the square root of the factorial of 20
+sqrt_factorial_20 = math.sqrt(factorial_20)
+
+# Display the result with 4 decimal places
+result = f"{sqrt_factorial_20:.4f}"
+print(result)
+```
+Python REPL can execute arbitrary code. Use with caution.
+
+Observation: 1559776268.6285
+
+Thought:I now know the final answer.
+
+Final Answer: 1559776268.6285
+
+> Finished chain.
+```
+
