@@ -23,6 +23,7 @@ messages:list[Any]=[
             content="Explain the entire workflow of developing RAG AI Applications."
           )
         ]
+
 print(messages)
 output:Any=chat(messages)
 print(output)

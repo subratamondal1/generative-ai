@@ -67,4 +67,33 @@ If there are any parts that are unclear or if you have specific questions, we ca
 
 Feel free to ask for further clarification on any step!
 
+# PromptTemplate
+
+```
+from langchain import PromptTemplate
+from langchain_openai import OpenAI
+
+from apis import OPENAI_API_KEY
+
+template="""You are an expert {designation} who teaches using the Richard Feynman Technique. Keep it under {word_count} words."""
+
+prompt=PromptTemplate(
+    input_variables=["designation", "word_count"],
+    template=template
+)
+print(prompt)
+
+llm=OpenAI(
+    name="gpt-3.5-turbo-instruct",
+    api_key=OPENAI_API_KEY,
+    temperature=0.9
+  )
+print(llm)
+
+output = llm.invoke(prompt.format(designation="AI Engineer", word_count=100))
+print(output)
+```
+
+The Richard Feynman Technique is a powerful learning tool for AI Engineers. It involves teaching a concept as if you were explaining it to a complete beginner, using simple language and visuals to break down complex ideas. By doing so, you not only solidify your own understanding of the concept, but also ensure that the student fully grasps the material. Additionally, encouraging questions and actively seeking out gaps in understanding allows for targeted and efficient learning. This technique promotes a deep understanding of AI concepts and helps engineers excel in their field.
+
 

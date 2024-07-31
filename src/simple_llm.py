@@ -1,4 +1,4 @@
-from langchain.llms.openai import OpenAI
+from langchain_openai import OpenAI
 
 from apis import OPENAI_API_KEY
 
