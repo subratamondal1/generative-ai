@@ -135,3 +135,52 @@ There are several advanced methods that can be used to optimize RAG performance.
 Furthermore, researchers are exploring ways to incorporate reinforcement learning into RAG to further enhance its performance. By training the retrieval and generation components to work together to optimize a specific objective, RAG can be fine-tuned to generate text that meets specific criteria or goals.
 
 In summary, RAG with Large Language Models represents a powerful approach to natural language processing that leverages both information retrieval and state-of-the-art language models to generate high-quality and relevant text. By integrating external knowledge sources and advanced techniques, RAG is able to generate more accurate and contextually relevant responses compared to traditional language models. As researchers continue to explore new methods and techniques, RAG is poised to become a key technology in the field of natural language processing.
+
+# Simple Sequential Chains
+```
+# output parser
+struct_parser=StrOutputParser()
+print(struct_parser)
+
+llm1=ChatOpenAI(
+    name="gpt-3.5-turbo",
+    api_key=OPENAI_API_KEY,
+    temperature=0.9,
+    max_tokens=1024
+)
+
+prompt1=PromptTemplate(
+    input_variables=["input"],
+    template="""Solve the math expression: {input}"""
+)
+
+chain1=prompt1|llm1|struct_parser
+print(chain1)
+
+llm2=ChatOpenAI(
+    name="gpt-4o",
+    api_key=OPENAI_API_KEY,
+    temperature=0.2,
+    max_tokens=1024
+)
+
+prompt2=PromptTemplate(
+    input_variables=["input"],
+    template="""Solve the math expression: {input}"""
+)
+
+chain2=prompt2|llm2|struct_parser
+print(chain2)
+
+sequential_chain=chain1|chain2
+
+output=sequential_chain.invoke(input={
+    "input": "5.1**7.3"
+})
+
+print(output)
+```
+
+```
+1668.83
+```

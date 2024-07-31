@@ -1,6 +1,5 @@
 from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
-from langchain.chains.llm import LLMChain
 
 from apis import OPENAI_API_KEY
 
