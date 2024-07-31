@@ -18,5 +18,5 @@ llm=OpenAI(
   )
 print(llm)
 
-output = llm.invoke(prompt.format(designation="AI Engineer", word_count=100))
+output = llm.invoke(input=prompt.format(designation="AI Engineer", word_count=100))
 print(output)
