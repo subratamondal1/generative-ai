@@ -2,8 +2,10 @@ import argparse
 
 from langchain_openai import ChatOpenAI
 from langchain.chains.llm import LLMChain
+from langchain.chains.sequential import SequentialChain
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from langchain_core.runnables import RunnablePassthrough
 
 from src.apis import OPENAI_API_KEY
 
@@ -23,32 +25,60 @@ code_prompt = PromptTemplate(
     input_variables = ["language", "task"]
 )
 
+test_code_prompt = PromptTemplate(
+    template = "Can you help me write a test for the {language} code:\n{code}.",
+    input_variables = ["language", "code"]
+)
+
 # Legacy Chaining
 legacy_chain = LLMChain(
     prompt = code_prompt,
-    llm = llm
+    llm = llm,
+    output_key = "code" # will go as input to the next chain
 )
 
-# Latest Chaining with LCEL 
-lcel_chain = code_prompt | llm | StrOutputParser()
+legacy_test_chain = LLMChain(
+    prompt = test_code_prompt,
+    llm = llm,
+    output_key = "test"
+)
 
-breakpoint()
+# legacy sequential chaining
+legacy_sequential_chain = SequentialChain(
+    chains = [legacy_chain, legacy_test_chain],
+    input_variables = ["language", "task"],
+    output_variables = ["code", "test"]
+)
 
-legacy_result = legacy_chain.invoke(
+legacy_sequential_result = legacy_sequential_chain.invoke(
     input = {
         "language":"Python",
         "task":"print the fibbonacci sequence"
     }
 )
+print(legacy_sequential_result, "\n", "="*100)
 
-lcel_result = lcel_chain.invoke(
-    input = {
-        "language":args.language,
-        "task":args.task
-    }
-)
+# Latest Chaining with LCEL 
+lcel_code_chain = code_prompt | llm | StrOutputParser()
+lcel_test_code_chain = test_code_prompt | llm | StrOutputParser()
 
 breakpoint()
 
-print(legacy_result, "\n", "="*100)
-print(lcel_chain)
+lcel_sequential_chain = (
+    {
+        "code": lcel_code_chain,
+        "language": RunnablePassthrough()
+    }
+    | lcel_test_code_chain
+)
+
+# Invoke the LCEL chain
+lcel_result = lcel_sequential_chain.invoke(
+    input = {
+        "language": args.language,
+        "task": args.task
+    }
+)
+breakpoint()
+
+print(lcel_result)
