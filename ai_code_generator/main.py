@@ -1,9 +1,16 @@
+import argparse
+
 from langchain_openai import ChatOpenAI
 from langchain.chains.llm import LLMChain
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
 from src.apis import OPENAI_API_KEY
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--task", default="Return a List of numbers")
+parser.add_argument("--language", default="Python")
+args = parser.parse_args()
 
 llm = ChatOpenAI(
     name = "Code Generator",
@@ -36,8 +43,8 @@ legacy_result = legacy_chain.invoke(
 
 lcel_result = lcel_chain.invoke(
     input = {
-        "language":"Python",
-        "task":"print the fibbonacci sequence"
+        "language":args.language,
+        "task":args.task
     }
 )
 
