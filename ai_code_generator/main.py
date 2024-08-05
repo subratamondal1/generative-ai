@@ -1,6 +1,7 @@
 from langchain_openai import ChatOpenAI
 from langchain.chains.llm import LLMChain
 from langchain_core.prompts import PromptTemplate
+from langchain_core.output_parsers import StrOutputParser
 
 from src.apis import OPENAI_API_KEY
 
@@ -14,18 +15,33 @@ code_prompt = PromptTemplate(
     template="Write a very short {language} function that would {task}.",
     input_variables = ["language", "task"]
 )
-chain = LLMChain(
+
+# Legacy Chaining
+legacy_chain = LLMChain(
     prompt = code_prompt,
     llm = llm
 )
+
+# Latest Chaining with LCEL 
+lcel_chain = code_prompt | llm | StrOutputParser()
+
 breakpoint()
 
-result = chain.invoke(
+legacy_result = legacy_chain.invoke(
     input = {
         "language":"Python",
         "task":"print the fibbonacci sequence"
     }
 )
+
+lcel_result = lcel_chain.invoke(
+    input = {
+        "language":"Python",
+        "task":"print the fibbonacci sequence"
+    }
+)
+
 breakpoint()
 
-print(result)
+print(legacy_result, "\n", "="*100)
+print(lcel_chain)
