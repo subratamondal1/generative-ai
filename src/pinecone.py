@@ -1,1 +1,0 @@
-from apis import PINECONE_API_KEY
