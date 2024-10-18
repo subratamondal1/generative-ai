@@ -1,0 +1,31 @@
+{
+  "os": "macOS-13.7-x86_64-i386-64bit",
+  "python": "3.12.5",
+  "startedAt": "2024-10-18T11:02:56.528003Z",
+  "program": "/Users/admin/Workspace/generative-ai/llm mastery/notebooks/generative_ai.ipynb",
+  "git": {
+    "remote": "git@github.com:subratamondal1/generative-ai.git",
+    "commit": "ace643a0c31cf7a51ef5a6453bbb611ff929c13e"
+  },
+  "email": "subratasubha2@gmail.com",
+  "root": "/Users/admin/Workspace/generative-ai/llm mastery/notebooks",
+  "host": "admins-iMac.local",
+  "username": "admin",
+  "executable": "/Users/admin/Library/Caches/pypoetry/virtualenvs/generative-ai-zqkb-BGY-py3.12/bin/python",
+  "codePathLocal": "generative_ai.ipynb",
+  "cpu_count": 4,
+  "cpu_count_logical": 4,
+  "disk": {
+    "/": {
+      "total": "1027680514048",
+      "used": "53272940544"
+    }
+  },
+  "memory": {
+    "total": "25769803776"
+  },
+  "cpu": {
+    "count": 4,
+    "countLogical": 4
+  }
+}
