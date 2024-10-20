@@ -169,3 +169,5 @@ cython_debug/
 .DS_Store
 .env
 data/
+.virtual_documents/
+codeium-jupyter/
