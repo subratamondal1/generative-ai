@@ -171,3 +171,4 @@ cython_debug/
 data/
 .virtual_documents/
 codeium-jupyter/
+rag/vendor/langfuse/
