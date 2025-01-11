@@ -35,6 +35,11 @@ langchain-openai = "^0.2.14"
 langchain = "^0.3.14"
 langchain-community = "^0.3.14"
 langchain-mongodb = "^0.4.0"
+torch = "2.2.1"
+torchvision = "0.17.1"
+torchaudio = "2.2.1"
+sentence-transformers = "^3.3.1"
+einops = "^0.8.0"
 
 
 [tool.poetry.group.dev.dependencies]
