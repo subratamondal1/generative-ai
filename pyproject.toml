@@ -40,6 +40,9 @@ torchvision = "0.17.1"
 torchaudio = "2.2.1"
 sentence-transformers = "^3.3.1"
 einops = "^0.8.0"
+python-docx = "^1.1.2"
+polars = "^1.19.0"
+pypdf = "^5.1.0"
 
 
 [tool.poetry.group.dev.dependencies]

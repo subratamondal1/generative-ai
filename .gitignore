@@ -172,3 +172,5 @@ data/
 .virtual_documents/
 codeium-jupyter/
 rag/vendor/langfuse/
+ca-fo-p1-c1
+generated_data
